@@ -69,6 +69,7 @@ export default function Form() {
     })
     const loggedIn = await loggedInResponse.json()
     onSubmitProps.resetForm()
+
     if (loggedIn) {
       dispatch(
         setLogin({
@@ -105,6 +106,51 @@ export default function Form() {
           className="flex flex-col justify-center items-center"
           onSubmit={handleSubmit}
         >
+          {isLogin && (
+            <>
+              <label className="self-start" htmlFor="email">
+                Email:
+              </label>
+              <input
+                className="rounded border border-indigo-200 mb-2 text-base px-4 py-2 mt-1"
+                type="email"
+                name="email"
+                id="email"
+                onBlur={handleBlur}
+                onChange={handleChange}
+                value={values.email}
+              />
+              {touched.email && errors.email && (
+                <p className="text-sm text-rose-500 self-start">
+                  {errors.email}
+                </p>
+              )}
+              <label className="self-start" htmlFor="password">
+                Password:
+              </label>
+              <input
+                className="rounded border border-indigo-200 mb-2 text-base px-4 py-2 mt-1"
+                type="password"
+                name="password"
+                id="password"
+                onBlur={handleBlur}
+                onChange={handleChange}
+                value={values.password}
+              />
+              {touched.password && errors.password && (
+                <p className="text-sm text-rose-500 self-start">
+                  {errors.password}
+                </p>
+              )}
+              <button
+                className="rounded bg-indigo-200 font-semibold py-2 px-4 mt-4 w-full"
+                type="submit"
+              >
+                Login
+              </button>
+            </>
+          )}
+
           {isRegister && (
             <>
               <label className="self-start" htmlFor="email">
@@ -141,11 +187,44 @@ export default function Form() {
                   {errors.lastName}
                 </p>
               )}
-
+              <label className="self-start" htmlFor="email">
+                Email:
+              </label>
+              <input
+                className="rounded border border-indigo-200 mb-2 text-base px-4 py-2 mt-1"
+                type="email"
+                name="email"
+                id="email"
+                onBlur={handleBlur}
+                onChange={handleChange}
+                value={values.email}
+              />
+              {touched.email && errors.email && (
+                <p className="text-sm text-rose-500 self-start">
+                  {errors.email}
+                </p>
+              )}
+              <label className="self-start" htmlFor="password">
+                Password:
+              </label>
+              <input
+                className="rounded border border-indigo-200 mb-2 text-base px-4 py-2 mt-1"
+                type="password"
+                name="password"
+                id="password"
+                onBlur={handleBlur}
+                onChange={handleChange}
+                value={values.password}
+              />
+              {touched.password && errors.password && (
+                <p className="text-sm text-rose-500 self-start">
+                  {errors.password}
+                </p>
+              )}
               <label className="self-start" htmlFor="picture">
                 Profile picture:
               </label>
-              <div className="rounded border border-indigo-200 p-2 w-full mt-1 mb-2">
+              <div className="rounded border border-indigo-200 p-2 w-full mt-1">
                 <Dropzone
                   acceptedFiles=".jpg,.jpeg,.png"
                   multiple={false}
@@ -168,47 +247,15 @@ export default function Form() {
                   )}
                 </Dropzone>
               </div>
+
+              <button
+                className="rounded bg-indigo-200 font-semibold py-2 px-4 mt-4 w-full"
+                type="submit"
+              >
+                Register
+              </button>
             </>
           )}
-          <label className="self-start" htmlFor="email">
-            Email:
-          </label>
-          <input
-            className="rounded border border-indigo-200 mb-2 text-base px-4 py-2 mt-1"
-            type="email"
-            name="email"
-            id="email"
-            onBlur={handleBlur}
-            onChange={handleChange}
-            value={values.email}
-          />
-          {touched.email && errors.email && (
-            <p className="text-sm text-rose-500 self-start">{errors.email}</p>
-          )}
-          <label className="self-start" htmlFor="password">
-            Password:
-          </label>
-          <input
-            className="rounded border border-indigo-200 mb-2 text-base px-4 py-2 mt-1"
-            type="password"
-            name="password"
-            id="password"
-            onBlur={handleBlur}
-            onChange={handleChange}
-            value={values.password}
-          />
-          {touched.password && errors.password && (
-            <p className="text-sm text-rose-500 self-start">
-              {errors.password}
-            </p>
-          )}
-          <button
-            className="rounded bg-indigo-200 font-semibold py-2 px-4 mt-4 w-full"
-            type="submit"
-          >
-            {isLogin ? 'Login' : 'Register'}
-          </button>
-
           <p
             className="mt-2 hover:underline hover:cursor-pointer text-sm"
             onClick={() => setPageType(isLogin ? 'register' : 'login')}
