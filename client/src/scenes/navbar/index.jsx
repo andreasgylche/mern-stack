@@ -27,7 +27,10 @@ export default function Navbar() {
         </p>
         <p
           className="hover:cursor-pointer hover:underline hover:text-rose-500"
-          onClick={() => dispatch(setLogout())}
+          onClick={() => {
+            dispatch(setLogout())
+            navigate('/')
+          }}
         >
           Log out
         </p>
