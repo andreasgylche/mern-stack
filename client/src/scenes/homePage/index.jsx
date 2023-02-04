@@ -1,5 +1,10 @@
-import React from 'react'
+import Navbar from '../navbar'
 
 export default function HomePage() {
-  return <div className='flex justify-center items-center w-full h-screen'>HomePage</div>
+  return (
+    <div className="w-full">
+      <Navbar />
+      HomePage
+    </div>
+  )
 }

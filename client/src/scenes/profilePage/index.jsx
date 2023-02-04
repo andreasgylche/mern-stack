@@ -1,5 +1,12 @@
 import React from 'react'
 
+import Navbar from '../navbar'
+
 export default function ProfilePage() {
-  return <div className='flex justify-center items-center w-full h-screen'>ProfilePage</div>
+  return (
+    <div className="w-full">
+      <Navbar />
+      HomePage
+    </div>
+  )
 }
