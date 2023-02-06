@@ -69,6 +69,7 @@ export default function Form() {
     })
     const loggedIn = await loggedInResponse.json()
     onSubmitProps.resetForm()
+
     if (loggedIn) {
       dispatch(
         setLogin({

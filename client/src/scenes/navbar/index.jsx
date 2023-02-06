@@ -1,6 +1,7 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
+import UserImage from '../../components/UserImage'
 import { setLogout } from '../../state'
 
 export default function Navbar() {
@@ -18,13 +19,20 @@ export default function Navbar() {
       >
         MERN Stack
       </p>
-      <div className="flex gap-4">
-        <p
-          className="hover:cursor-pointer hover:underline"
-          onClick={() => navigate(`/profile/${user._id}`)}
-        >
-          {fullName}
-        </p>
+      <div className="flex gap-4 items-center">
+        <div className="flex items-center gap-2">
+          <UserImage
+            size={32}
+            image={user.picturePath}
+            onClick={() => navigate(`/profile/${user._id}`)}
+          />
+          <p
+            className="hover:cursor-pointer hover:underline"
+            onClick={() => navigate(`/profile/${user._id}`)}
+          >
+            {fullName}
+          </p>
+        </div>
         <p
           className="hover:cursor-pointer hover:underline hover:text-rose-500"
           onClick={() => {

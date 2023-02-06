@@ -31,9 +31,6 @@ export default function Form() {
     formData.append('userId', _id)
     formData.append('picturePath', values.picture.name)
 
-    console.log(1)
-    console.table(formData)
-
     const response = await fetch('http://localhost:3001/posts', {
       method: 'POST',
       headers: { Authorization: `Bearer ${token}` },

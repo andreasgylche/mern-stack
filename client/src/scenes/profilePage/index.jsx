@@ -6,7 +6,7 @@ export default function ProfilePage() {
   return (
     <div className="w-full">
       <Navbar />
-      HomePage
+      Profile page
     </div>
   )
 }
