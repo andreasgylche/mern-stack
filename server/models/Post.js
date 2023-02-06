@@ -21,10 +21,8 @@ const postSchema = new mongoose.Schema(
         description: {
             type: String,
         },
-        userPicturePath: {
-            type: String,
-            required: true,
-        },
+        userPicturePath: String,
+        picturePath: String,
         likes: {
             type: Map,
             of: Boolean,
