@@ -107,7 +107,7 @@ export default function Form() {
         >
           {isRegister && (
             <>
-              <label className="self-start" htmlFor="email">
+              <label className="self-start" htmlFor="firstName">
                 First Name:
               </label>
               <input
@@ -124,7 +124,7 @@ export default function Form() {
                   {errors.firstName}
                 </p>
               )}
-              <label className="self-start" htmlFor="email">
+              <label className="self-start" htmlFor="lastName">
                 Last Name:
               </label>
               <input
@@ -158,7 +158,7 @@ export default function Form() {
                       className=" rounded border border-dashed border-indigo-200 hover:cursor-pointer p-2"
                       {...getRootProps()}
                     >
-                      <input {...getInputProps()} />
+                      <input name="picture" {...getInputProps()} />
                       {!values.picture ? (
                         <p className="text-sm">Add picture here</p>
                       ) : (

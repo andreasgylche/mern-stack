@@ -3,7 +3,7 @@ import Navbar from '../navbar'
 import * as yup from 'yup'
 import { Formik } from 'formik'
 import { useDispatch, useSelector } from 'react-redux'
-import { setPost } from '../../state'
+import { setPosts } from '../../state'
 import Dropzone from 'react-dropzone'
 
 const postSchema = yup.object().shape({
@@ -28,24 +28,23 @@ export default function Form() {
     for (let value in values) {
       formData.append(value, values[value])
     }
-    formData.append('picturePath', values.picture.name)
     formData.append('userId', _id)
+    formData.append('picturePath', values.picture.name)
 
     console.log(1)
+    console.table(formData)
 
-    const savedPostResponse = await fetch('http://localhost:3001/posts', {
+    const response = await fetch('http://localhost:3001/posts', {
       method: 'POST',
       headers: { Authorization: `Bearer ${token}` },
       body: formData,
     })
 
-    console.log(2)
-
-    const savedPost = await savedPostResponse.json()
+    const posts = await response.json()
     onSubmitProps.resetForm()
 
-    if (savedPost) {
-      dispatch(setPost({ savedPost }))
+    if (posts) {
+      dispatch(setPosts({ posts }))
     }
   }
 
@@ -116,7 +115,7 @@ export default function Form() {
                 >
                   <input {...getInputProps()} />
                   {!values.picture ? (
-                    <p className="text-sm">Add picture here</p>
+                    <p className="text-sm">Add picture here (max 30mb).</p>
                   ) : (
                     <p className="text-sm">{values.picture.name}</p>
                   )}
