@@ -14,9 +14,12 @@ const postSchema = new mongoose.Schema(
             type: String,
             required: true,
         },
-        description: {
+        title: {
             type: String,
             required: true,
+        },
+        description: {
+            type: String,
         },
         userPicturePath: {
             type: String,
