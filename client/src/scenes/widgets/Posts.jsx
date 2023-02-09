@@ -36,5 +36,11 @@ export default function Posts({ userId, isProfile = false }) {
     }
   }, [])
 
-  return <div>posts</div>
+  return (
+    <div>
+      {posts.map((post) => (
+        <Post key={post._id} post={post} />
+      ))}
+    </div>
+  )
 }
