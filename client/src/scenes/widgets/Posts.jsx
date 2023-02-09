@@ -14,7 +14,7 @@ export default function Posts({ userId, isProfile = false }) {
       headers: { Authorization: `Bearer ${token}` },
     })
 
-    const posts = response.json()
+    const posts = await response.json()
     dispatch(setPosts({ posts }))
   }
 
@@ -24,7 +24,7 @@ export default function Posts({ userId, isProfile = false }) {
       headers: { Authorization: `Bearer ${token}` },
     })
 
-    const posts = response.json()
+    const posts = await response.json()
     dispatch(setPosts({ posts }))
   }
 
@@ -33,9 +33,8 @@ export default function Posts({ userId, isProfile = false }) {
       getUserPosts()
     } else {
       getFeedPosts()
-      console.table(posts)
     }
   }, [])
 
-  return <div>Posts</div>
+  return <div>posts</div>
 }
