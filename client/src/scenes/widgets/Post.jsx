@@ -13,7 +13,8 @@ export default function Post({ post }) {
   const fullName = `${post.firstName} ${post.lastName}`
   const userImage = `http://localhost:3001/assets/${post.userPicturePath}`
   const postImage = `http://localhost:3001/assets/${post.picturePath}`
-  // const likesCount = Object.keys(post.likes).length
+  const likeCount = Object.keys(post.likes).length
+  const isLiked = Boolean(post.likes[loggedInUser])
 
   const handleLike = async () => {
     const response = await fetch(
@@ -41,7 +42,7 @@ export default function Post({ post }) {
           alt="post image"
         />
       </div>
-      <div className="flex justify-between items-center">
+      <div className="flex justify-between items-center px-2">
         <div className="flex gap-2 items-center">
           <img
             className="w-6 h-6 rounded-full"
@@ -55,15 +56,14 @@ export default function Post({ post }) {
             {fullName}
           </p>
         </div>
+
         <p
           className="text-sm hover:cursor-pointer hover:underline ml-auto mr-1"
           onClick={handleLike}
         >
-          Like
+          {isLiked ? 'Remove like' : 'Like'}
         </p>
-        <span className="text-sm font-bold">
-          {post.likes ? post.likes : '0'}
-        </span>
+        <span className="text-sm font-bold">{likeCount ? likeCount : '0'}</span>
       </div>
       <p className="text-sm">{post.description}</p>
     </div>

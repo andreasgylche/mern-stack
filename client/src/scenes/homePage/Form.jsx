@@ -62,14 +62,14 @@ export default function Form() {
         resetForm,
       }) => (
         <form
-          className="flex flex-col justify-center items-center w-fit"
+          className="flex flex-col justify-center items-center w-72"
           onSubmit={handleSubmit}
         >
           <label className="self-start" htmlFor="title">
             Post title:
           </label>
           <input
-            className="rounded border border-indigo-200 mb-2 text-base px-4 py-2 mt-1"
+            className="rounded border border-indigo-200 mb-2 text-base px-4 py-2 mt-1 w-full"
             type="text"
             name="title"
             id="title"
@@ -84,7 +84,7 @@ export default function Form() {
             Post description:
           </label>
           <textarea
-            className="rounded border border-indigo-200 mb-2 text-base px-4 py-2 mt-1"
+            className="rounded border border-indigo-200 mb-2 text-base px-4 py-2 mt-1 w-full"
             name="description"
             id="description"
             rows="5"
