@@ -103,7 +103,7 @@ export default function Form() {
         resetForm,
       }) => (
         <form
-          className="flex flex-col justify-center items-center"
+          className="flex flex-col justify-center items-center w-72"
           onSubmit={handleSubmit}
         >
           {isRegister && (
@@ -112,7 +112,7 @@ export default function Form() {
                 First Name:
               </label>
               <input
-                className="rounded border border-indigo-200 mb-2 text-base px-4 py-2 mt-1"
+                className="rounded border border-indigo-200 mb-2 text-base px-4 py-2 mt-1 w-full"
                 type="text"
                 name="firstName"
                 id="firstName"
@@ -129,7 +129,7 @@ export default function Form() {
                 Last Name:
               </label>
               <input
-                className="rounded border border-indigo-200 mb-2 text-base px-4 py-2 mt-1"
+                className="rounded border border-indigo-200 mb-2 text-base px-4 py-2 mt-1 w-full"
                 type="text"
                 name="lastName"
                 id="lastName"
@@ -146,7 +146,7 @@ export default function Form() {
               <label className="self-start" htmlFor="picture">
                 Profile picture:
               </label>
-              <div className="rounded border border-indigo-200 p-2 w-full mt-1 mb-2">
+              <div className="rounded border border-indigo-200 p-2 w-full mt-1 mb-2 w-full">
                 <Dropzone
                   acceptedFiles=".jpg,.jpeg,.png"
                   multiple={false}
@@ -156,7 +156,7 @@ export default function Form() {
                 >
                   {({ getRootProps, getInputProps }) => (
                     <div
-                      className=" rounded border border-dashed border-indigo-200 hover:cursor-pointer p-2"
+                      className=" rounded border border-dashed border-indigo-200 hover:cursor-pointer p-2 w-full"
                       {...getRootProps()}
                     >
                       <input name="picture" {...getInputProps()} />
@@ -175,7 +175,7 @@ export default function Form() {
             Email:
           </label>
           <input
-            className="rounded border border-indigo-200 mb-2 text-base px-4 py-2 mt-1"
+            className="rounded border border-indigo-200 mb-2 text-base px-4 py-2 mt-1 w-full"
             type="email"
             name="email"
             id="email"
@@ -190,7 +190,7 @@ export default function Form() {
             Password:
           </label>
           <input
-            className="rounded border border-indigo-200 mb-2 text-base px-4 py-2 mt-1"
+            className="rounded border border-indigo-200 mb-2 text-base px-4 py-2 mt-1 w-full"
             type="password"
             name="password"
             id="password"
