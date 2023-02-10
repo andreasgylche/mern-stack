@@ -37,10 +37,13 @@ export default function Posts({ userId, isProfile = false }) {
   }, [])
 
   return (
-    <div>
-      {posts.map((post) => (
-        <Post key={post._id} post={post} />
-      ))}
+    <div className="mt-4">
+      <h1 className="block text-lg font-semibold my-4">Feed Posts</h1>
+      <div className="flex flex-col gap-4">
+        {posts.map((post) => (
+          <Post key={post._id} post={post} />
+        ))}
+      </div>
     </div>
   )
 }
