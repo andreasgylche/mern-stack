@@ -8,7 +8,6 @@ export default function Post({ post }) {
   const dispatch = useDispatch()
   const token = useSelector((state) => state.token)
   const loggedInUser = useSelector((state) => state.user._id)
-  // const isLiked = Boolean(post.likes[loggedInUser])
 
   const fullName = `${post.firstName} ${post.lastName}`
   const userImage = `http://localhost:3001/assets/${post.userPicturePath}`
