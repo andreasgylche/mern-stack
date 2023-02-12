@@ -3,6 +3,7 @@ import {
     getUsers,
     getUser,
     updateUser,
+    addRemoveFollower,
     deleteUser,
 } from '../controllers/users.js';
 import { verifyToken } from '../middleware/auth.js';
@@ -15,6 +16,7 @@ router.get('/:id', verifyToken, getUser);
 
 /* UPDATE */
 router.patch('/:id', verifyToken, updateUser);
+router.patch('/:id/:followId', verifyToken, addRemoveFollower);
 
 /* DELETE */
 router.delete('/:id', verifyToken, deleteUser);

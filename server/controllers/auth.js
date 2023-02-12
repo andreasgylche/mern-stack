@@ -16,6 +16,8 @@ export const register = async (req, res) => {
             email,
             password: passwordHash,
             picturePath,
+            following: {},
+            followers: {},
         });
         const savedUser = await newUser.save();
 

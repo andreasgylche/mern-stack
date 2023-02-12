@@ -28,6 +28,14 @@ const UserSchema = new mongoose.Schema(
             type: String,
             default: '',
         },
+        following: {
+            type: Map,
+            of: Boolean,
+        },
+        followers: {
+            type: Map,
+            of: Boolean,
+        },
     },
     { timestamps: true }
 );

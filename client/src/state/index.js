@@ -28,8 +28,16 @@ export const authSlice = createSlice({
       })
       state.posts = updatedPosts
     },
+    setFollow: (state, action) => {
+      if (state.user) {
+        state.user.following = action.payload.following
+      } else {
+        console.error('Followers/following is non-existent.')
+      }
+    },
   },
 })
 
-export const { setLogin, setLogout, setPosts, setPost } = authSlice.actions
+export const { setLogin, setLogout, setPosts, setPost, setFollow } =
+  authSlice.actions
 export default authSlice.reducer
