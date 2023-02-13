@@ -34,7 +34,7 @@ export default function Posts({ userId, isProfile = false }) {
     } else {
       getFeedPosts()
     }
-  }, [])
+  }, [userId])
 
   return (
     <div className="mt-4">
