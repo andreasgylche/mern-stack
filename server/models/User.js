@@ -31,10 +31,12 @@ const UserSchema = new mongoose.Schema(
         following: {
             type: Map,
             of: Boolean,
+            default: {},
         },
         followers: {
             type: Map,
             of: Boolean,
+            default: {},
         },
     },
     { timestamps: true }
