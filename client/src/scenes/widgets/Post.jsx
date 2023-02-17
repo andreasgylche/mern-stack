@@ -15,6 +15,7 @@ export default function Post({ post }) {
   const likeCount = Object.keys(post.likes).length
   const isLiked = Boolean(post.likes[user._id])
   const isFollow = Boolean(user.following[post.userId])
+  const isOwn = Boolean(post.userId == user._id)
 
   const handleLike = async () => {
     const response = await fetch(
@@ -68,12 +69,14 @@ export default function Post({ post }) {
             >
               {fullName}
             </p>
-            <button
-              className="text-xs font-semibold rounded bg-indigo-200 px-2 py-1"
-              onClick={handleFollow}
-            >
-              {isFollow ? 'Unfollow' : 'Follow'}
-            </button>
+            {!isOwn && (
+              <button
+                className="text-xs font-semibold rounded bg-indigo-200 px-2 py-1"
+                onClick={handleFollow}
+              >
+                {isFollow ? 'Unfollow' : 'Follow'}
+              </button>
+            )}
           </div>
         </div>
 
