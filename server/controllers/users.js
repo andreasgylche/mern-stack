@@ -1,4 +1,5 @@
 import User from '../models/User.js';
+import Post from '../models/Post.js';
 
 /* READ */
 export const getUsers = async (req, res) => {
@@ -14,7 +15,22 @@ export const getUsers = async (req, res) => {
 export const getUser = async (req, res) => {
     try {
         const { id } = req.params;
-        const user = await User.findById(id, { password: 0 });
+
+        // const user = await User.findById(id, { password: 0 });
+        const posts = await Post.find({ user: id });
+
+        const totalPosts = posts.length;
+
+        let totalLikes = 0;
+        const likes = posts.map((post) => {
+            totalLikes += post.likes.size;
+        });
+
+        const user = await User.findByIdAndUpdate(
+            id,
+            { totalPosts: totalPosts, totalLikes: totalLikes },
+            { new: true, select: '-password' }
+        );
 
         res.status(200).json(user);
     } catch (error) {
@@ -26,19 +42,18 @@ export const getUser = async (req, res) => {
 export const updateUser = async (req, res) => {
     try {
         const { id } = req.params;
-        const { firstName, lastName, email, picturePath } = req.body;
+        const { username, email, picturePath } = req.body;
 
         const user = await User.findByIdAndUpdate(id, {
-            firstName,
-            lastName,
+            username,
             email,
             picturePath,
         });
+
         user.save();
 
         const updatedUser = {
-            firstName,
-            lastName,
+            username,
             email,
             picturePath,
         };

@@ -15,6 +15,7 @@ const postSchema = yup.object().shape({
 const initialPostValues = {
   title: '',
   description: '',
+  picture: '',
 }
 
 export default function Form() {

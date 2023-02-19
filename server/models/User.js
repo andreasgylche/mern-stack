@@ -2,17 +2,12 @@ import mongoose from 'mongoose';
 
 const UserSchema = new mongoose.Schema(
     {
-        firstName: {
+        username: {
             type: String,
             required: true,
-            min: 2,
-            max: 50,
-        },
-        lastName: {
-            type: String,
-            required: true,
-            min: 2,
-            max: 50,
+            unique: true,
+            min: 8,
+            max: 32,
         },
         email: {
             type: String,
@@ -37,6 +32,19 @@ const UserSchema = new mongoose.Schema(
             type: Map,
             of: Boolean,
             default: {},
+        },
+        games: {
+            type: Map,
+            of: Boolean,
+            default: {},
+        },
+        totalPosts: {
+            type: Number,
+            default: 0,
+        },
+        totalLikes: {
+            type: Number,
+            default: 0,
         },
     },
     { timestamps: true }

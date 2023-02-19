@@ -9,8 +9,6 @@ export default function Navbar() {
   const navigate = useNavigate()
   const user = useSelector((state) => state.user)
 
-  const fullName = `${user.firstName} ${user.lastName}`
-
   return (
     <div className="w-full flex justify-between items-center h-12 bg bg-indigo-200 px-4">
       <p
@@ -30,7 +28,7 @@ export default function Navbar() {
             className="hover:cursor-pointer hover:underline"
             onClick={() => navigate(`/profile/${user._id}`)}
           >
-            {fullName}
+            {user.username}
           </p>
         </div>
         <p

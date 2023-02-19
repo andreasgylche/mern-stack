@@ -9,13 +9,14 @@ export default function Post({ post }) {
   const token = useSelector((state) => state.token)
   const user = useSelector((state) => state.user)
 
-  const fullName = `${post.firstName} ${post.lastName}`
-  const userImage = `http://localhost:3001/assets/${post.userPicturePath}`
+  const userImage = post.user.picturePath
+    ? `http://localhost:3001/assets/${post.user.picturePath}`
+    : `https://ui-avatars.com/api/?name=${post.user.username}`
   const postImage = `http://localhost:3001/assets/${post.picturePath}`
   const likeCount = Object.keys(post.likes).length
   const isLiked = Boolean(post.likes[user._id])
-  const isFollow = Boolean(user.following[post.userId])
-  const isOwn = Boolean(post.userId == user._id)
+  const isFollow = Boolean(user.following[post.user._id])
+  const isOwn = Boolean(post.user._id == user._id)
 
   const handleLike = async () => {
     const response = await fetch(
@@ -36,7 +37,7 @@ export default function Post({ post }) {
 
   const handleFollow = async () => {
     const response = await fetch(
-      `http://localhost:3001/users/${user._id}/${post.userId}`,
+      `http://localhost:3001/users/${user._id}/${post.user._id}`,
       {
         method: 'PATCH',
         headers: {
@@ -65,9 +66,9 @@ export default function Post({ post }) {
           <div className="flex gap-2 items-center">
             <p
               className="hover:cursor-pointer hover:underline"
-              onClick={() => navigate(`/profile/${post.userId}`)}
+              onClick={() => navigate(`/profile/${post.user._id}`)}
             >
-              {fullName}
+              {post.user.username}
             </p>
             {!isOwn && (
               <button

@@ -5,22 +5,20 @@ import User from '../models/User.js';
 export const createPost = async (req, res) => {
     try {
         const { userId, title, description, picturePath } = req.body;
-        const user = await User.findById(userId);
+        const user = await User.findById(userId, { password: 0 });
+
         const newPost = new Post({
-            userId,
-            firstName: user.firstName,
-            lastName: user.lastName,
             title,
             description,
-            userPicturePath: user.picturePath,
             picturePath,
             likes: {},
             comments: [],
+            user: user,
         });
 
         await newPost.save();
 
-        const posts = await Post.find();
+        const posts = await Post.find().populate('user');
 
         res.status(201).json(posts);
     } catch (error) {
@@ -31,7 +29,7 @@ export const createPost = async (req, res) => {
 /* READ */
 export const getFeedPosts = async (req, res) => {
     try {
-        const posts = await Post.find();
+        const posts = await Post.find().populate('user');
         res.status(200).json(posts);
     } catch (error) {
         res.status(404).json({ message: error.message });
@@ -42,7 +40,7 @@ export const getUserPosts = async (req, res) => {
     try {
         const { userId } = req.params;
 
-        const userPosts = await Post.find({ userId });
+        const userPosts = await Post.find({ user: userId }).populate('user');
         res.status(200).json(userPosts);
     } catch (error) {
         res.status(404).json({ message: error.message });
@@ -67,7 +65,7 @@ export const likePost = async (req, res) => {
             id,
             { likes: post.likes },
             { new: true }
-        );
+        ).populate('user');
 
         res.status(200).json(updatedPost);
     } catch (error) {

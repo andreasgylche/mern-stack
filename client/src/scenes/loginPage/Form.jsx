@@ -7,8 +7,7 @@ import { setLogin } from '../../state'
 import Dropzone from 'react-dropzone'
 
 const registerSchema = yup.object().shape({
-  firstName: yup.string().required('Field is required.'),
-  lastName: yup.string().required('Field is required.'),
+  username: yup.string().required('Field is required.'),
   email: yup.string().email('Invalid email').required('Field is required.'),
   password: yup.string().required('Field is required.'),
   picture: yup.string().required('Field is required.'),
@@ -20,8 +19,7 @@ const loginSchema = yup.object().shape({
 })
 
 const initialValuesRegister = {
-  firstName: '',
-  lastName: '',
+  username: '',
   email: '',
   password: '',
   picture: '',
@@ -108,45 +106,28 @@ export default function Form() {
         >
           {isRegister && (
             <>
-              <label className="self-start" htmlFor="firstName">
-                First Name:
+              <label className="self-start" htmlFor="username">
+                Username:
               </label>
               <input
                 className="rounded border border-indigo-200 mb-2 text-base px-4 py-2 mt-1 w-full"
                 type="text"
-                name="firstName"
-                id="firstName"
+                name="username"
+                id="username"
                 onBlur={handleBlur}
                 onChange={handleChange}
-                value={values.firstName}
+                value={values.username}
               />
-              {touched.firstName && errors.firstName && (
+              {touched.username && errors.username && (
                 <p className="text-sm text-rose-500 self-start">
-                  {errors.firstName}
-                </p>
-              )}
-              <label className="self-start" htmlFor="lastName">
-                Last Name:
-              </label>
-              <input
-                className="rounded border border-indigo-200 mb-2 text-base px-4 py-2 mt-1 w-full"
-                type="text"
-                name="lastName"
-                id="lastName"
-                onBlur={handleBlur}
-                onChange={handleChange}
-                value={values.lastName}
-              />
-              {touched.lastName && errors.lastName && (
-                <p className="text-sm text-rose-500 self-start">
-                  {errors.lastName}
+                  {errors.username}
                 </p>
               )}
 
               <label className="self-start" htmlFor="picture">
                 Profile picture:
               </label>
-              <div className="rounded border border-indigo-200 p-2 w-full mt-1 mb-2 w-full">
+              <div className="rounded border border-indigo-200 p-2 mt-1 mb-2 w-full">
                 <Dropzone
                   acceptedFiles=".jpg,.jpeg,.png"
                   multiple={false}
