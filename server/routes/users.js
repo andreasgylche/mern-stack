@@ -12,13 +12,13 @@ const router = express.Router();
 
 /* READ */
 router.get('/', verifyToken, getUsers);
-router.get('/:id', verifyToken, getUser);
+router.get('/:userId', verifyToken, getUser);
 
 /* UPDATE */
-router.patch('/:id', verifyToken, updateUser);
-router.patch('/:id/:followId', verifyToken, addRemoveFollower);
+router.patch('/:userId', verifyToken, updateUser);
+router.patch('/:userId/:followId', verifyToken, addRemoveFollower);
 
 /* DELETE */
-router.delete('/:id', verifyToken, deleteUser);
+router.delete('/:userId', verifyToken, deleteUser);
 
 export default router;

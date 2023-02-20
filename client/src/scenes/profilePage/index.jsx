@@ -11,8 +11,6 @@ export default function ProfilePage() {
   const { id } = useParams()
   const token = useSelector((state) => state.token)
 
-  const userImage = `http://localhost:3001/assets/${user.picturePath}`
-  const fullName = `${user.firstName} ${user.lastName}`
   const followerCount = user.followers
     ? Object.keys(user.followers).length
     : '0'
@@ -38,15 +36,17 @@ export default function ProfilePage() {
       <Navbar />
       <h1 className="block text-lg font-semibold my-4">Profile page</h1>
 
-      <div className="flex gap-3 items-center">
+      <div className="flex flex-col gap-3 items-center bg-neutral-100 p-4 rounded">
         {user.picturePath && <UserImage size={48} image={user.picturePath} />}
 
         <div className="flex flex-col">
-          <p className="font-semibold">{fullName}</p>
+          <p className="font-semibold">{user.username}</p>
           <span className="text-sm">
             {followerCount ? followerCount : '0'} followers
           </span>
         </div>
+        <p>Total posts: {user.totalPosts}</p>
+        <p>Total likes: {user.totalLikes}</p>
       </div>
 
       <Posts userId={id} isProfile />

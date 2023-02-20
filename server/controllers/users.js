@@ -1,4 +1,5 @@
 import User from '../models/User.js';
+import Post from '../models/Post.js';
 
 /* READ */
 export const getUsers = async (req, res) => {
@@ -13,8 +14,21 @@ export const getUsers = async (req, res) => {
 
 export const getUser = async (req, res) => {
     try {
-        const { id } = req.params;
-        const user = await User.findById(id, { password: 0 });
+        const { userId } = req.params;
+
+        const posts = await Post.find({ user: userId });
+
+        const totalPosts = posts.length;
+        const totalLikes = posts.reduce(
+            (acc, post) => acc + post.likes.size,
+            0
+        );
+
+        const user = await User.findByIdAndUpdate(
+            userId,
+            { totalPosts: totalPosts, totalLikes: totalLikes },
+            { new: true, select: '-password' }
+        );
 
         res.status(200).json(user);
     } catch (error) {
@@ -25,20 +39,19 @@ export const getUser = async (req, res) => {
 /* UPDATE */
 export const updateUser = async (req, res) => {
     try {
-        const { id } = req.params;
-        const { firstName, lastName, email, picturePath } = req.body;
+        const { userId } = req.params;
+        const { username, email, picturePath } = req.body;
 
-        const user = await User.findByIdAndUpdate(id, {
-            firstName,
-            lastName,
+        const user = await User.findByIdAndUpdate(userId, {
+            username,
             email,
             picturePath,
         });
+
         user.save();
 
         const updatedUser = {
-            firstName,
-            lastName,
+            username,
             email,
             picturePath,
         };
@@ -50,27 +63,25 @@ export const updateUser = async (req, res) => {
 
 export const addRemoveFollower = async (req, res) => {
     try {
-        const { id, followId } = req.params;
-        const user = await User.findById(id);
-        const followUser = await User.findById(followId);
+        const { userId, followId } = req.params;
+        const [user, followUser] = await Promise.all([
+            User.findById(userId),
+            User.findById(followId),
+        ]);
+
         const isFollow = user.following.get(followId);
 
         if (isFollow) {
             user.following.delete(followId);
-            followUser.followers.delete(id);
+            followUser.followers.delete(userId);
         } else {
             user.following.set(followId, true);
-            followUser.followers.set(id, true);
+            followUser.followers.set(userId, true);
         }
 
-        await user.save();
-        await followUser.save();
+        await Promise.all([user.save(), followUser.save()]);
 
-        const updatedUser = await User.findById(id);
-
-        const updatedFollowing = updatedUser.following;
-
-        res.status(200).json(updatedFollowing);
+        res.status(200).json(user.following);
     } catch (error) {
         res.status(404).json({ message: error.message });
     }
@@ -79,8 +90,8 @@ export const addRemoveFollower = async (req, res) => {
 /* DELETE */
 export const deleteUser = async (req, res) => {
     try {
-        const { id } = req.params;
-        const user = await User.findByIdAndDelete(id);
+        const { userId } = req.params;
+        const user = await User.findByIdAndDelete(userId);
         res.status(200).json({ message: 'User has been deleted.' });
     } catch (error) {
         res.status(404).json({ message: error.message });
