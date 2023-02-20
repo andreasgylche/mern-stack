@@ -50,9 +50,9 @@ export const getUserPosts = async (req, res) => {
 /* UPDATE */
 export const likePost = async (req, res) => {
     try {
-        const { id } = req.params;
+        const { postId } = req.params;
         const { userId } = req.body;
-        const post = await Post.findById(id);
+        const post = await Post.findById(postId);
         const isLiked = post.likes.get(userId);
 
         if (isLiked) {
@@ -62,7 +62,7 @@ export const likePost = async (req, res) => {
         }
 
         const updatedPost = await Post.findByIdAndUpdate(
-            id,
+            postId,
             { likes: post.likes },
             { new: true }
         ).populate('user');
