@@ -32,7 +32,7 @@ const initialValuesLogin = {
   password: '',
 }
 
-export default function Form() {
+export default function AuthForm() {
   const [pageType, setPageType] = useState('login')
   const dispatch = useDispatch()
   const navigate = useNavigate()
@@ -114,7 +114,7 @@ export default function Form() {
                 Username:
               </label>
               <input
-                className="rounded-lg bg-[#f0f0f0] dark:bg-neutral-700 border-2 border-teal-500/50 mb-2 text-base px-4 py-2 mt-2 w-full"
+                className="rounded bg-[#f0f0f0] dark:bg-neutral-700 border-2 border-teal-500/50 mb-2 text-base px-4 py-2 mt-2 w-full"
                 type="text"
                 name="username"
                 id="username"
@@ -131,7 +131,7 @@ export default function Form() {
               <label className="self-start mt-2" htmlFor="picture">
                 Profile picture:
               </label>
-              <div className="rounded-lg border border-teal-500 p-2 my-2 w-full">
+              <div className="rounded border border-teal-500 p-2 my-2 w-full">
                 <Dropzone
                   acceptedFiles=".jpg,.jpeg,.png"
                   multiple={false}
@@ -141,7 +141,7 @@ export default function Form() {
                 >
                   {({ getRootProps, getInputProps }) => (
                     <div
-                      className="rounded-lg border border-dashed border-teal-500/50 hover:cursor-pointer p-2 w-full"
+                      className="rounded border border-dashed border-teal-500/50 hover:cursor-pointer p-2 w-full"
                       {...getRootProps()}
                     >
                       <input name="picture" {...getInputProps()} />
@@ -160,7 +160,7 @@ export default function Form() {
             Email:
           </label>
           <input
-            className="rounded-lg bg-[#f0f0f0] dark:bg-neutral-700 border-2 border-teal-500/50 mb-2 text-base px-4 py-2 mt-2 w-full"
+            className="rounded bg-[#f0f0f0] dark:bg-neutral-700 border-2 border-teal-500/50 mb-2 text-base px-4 py-2 mt-2 w-full"
             type="email"
             name="email"
             id="email"
@@ -175,7 +175,7 @@ export default function Form() {
             Password:
           </label>
           <input
-            className="rounded-lg bg-[#f0f0f0] dark:bg-neutral-700 border-2 border-teal-500/50 mb-2 text-base px-4 py-2 mt-2 w-full"
+            className="rounded bg-[#f0f0f0] dark:bg-neutral-700 border-2 border-teal-500/50 mb-2 text-base px-4 py-2 mt-2 w-full"
             type="password"
             name="password"
             id="password"

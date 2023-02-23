@@ -18,7 +18,7 @@ const initialPostValues = {
   picture: '',
 }
 
-export default function Form() {
+export default function PostForm() {
   const dispatch = useDispatch()
   const user = useSelector((state) => state.user)
   const token = useSelector((state) => state.token)

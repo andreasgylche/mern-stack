@@ -35,7 +35,7 @@ export default function Posts({ userId, isProfile = false }) {
   }, [])
 
   return (
-    <div className="flex flex-col gap-4">
+    <div className="flex flex-col gap-6 w-full">
       {posts && posts.map((post) => <PostWidget key={post._id} post={post} />)}
     </div>
   )

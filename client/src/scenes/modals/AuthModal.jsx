@@ -1,7 +1,7 @@
 import React, { Fragment, useContext } from 'react'
 import { AuthModalContext } from '../../App'
 import { Dialog, Transition } from '@headlessui/react'
-import Form from '../loginPage/Form'
+import AuthForm from './AuthForm'
 
 export default function AuthModal() {
   const [isAuthOpen, setIsAuthOpen] = useContext(AuthModalContext)
@@ -37,7 +37,7 @@ export default function AuthModal() {
                 leaveFrom="opacity-100 scale-100"
                 leaveTo="opacity-0 scale-95"
               >
-                <Dialog.Panel className="w-full max-w-md transform overflow-hidden rounded-lg p-4 text-left align-middle shadow-xl transition-all bg-neutral-50 dark:bg-neutral-800 text-neutral-900 dark:text-neutral-50">
+                <Dialog.Panel className="w-full max-w-md transform overflow-hidden rounded p-4 text-left align-middle shadow-xl transition-all bg-neutral-50 dark:bg-neutral-800 text-neutral-900 dark:text-neutral-50">
                   <Dialog.Title
                     as="h3"
                     className="text-lg font-medium leading-6"
@@ -48,7 +48,7 @@ export default function AuthModal() {
                     Sign in or sign up to partake in the festivities.
                   </Dialog.Description>
 
-                  <Form />
+                  <AuthForm />
                 </Dialog.Panel>
               </Transition.Child>
             </div>

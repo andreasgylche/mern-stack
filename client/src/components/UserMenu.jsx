@@ -33,7 +33,11 @@ export default function UserMenu() {
       <div>
         <Menu.Button className="flex gap-2 items-center hover:bg-neutral-100 justify-center rounded-lg p-2 text-sm dark:hover:bg-neutral-900 focus:outline-none focus-visible:ring-2 focus-visible:ring-neutral-900 focus-visible:ring-opacity-75 text-neutral-900 dark:text-neutral-50">
           {user.username}
-          <UserImage size={32} image={user.picturePath} />
+          <UserImage
+            size={32}
+            image={user.picturePath}
+            username={user.username}
+          />
         </Menu.Button>
       </div>
       <Transition
