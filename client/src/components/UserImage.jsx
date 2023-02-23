@@ -2,9 +2,9 @@ import React from 'react'
 
 export default function UserImage({ size, image }) {
   return (
-    <div className={`flex justify-center items-center cursor-pointer`}>
+    <div className={`flex justify-center items-center`}>
       <img
-        className="rounded"
+        className="rounded-lg"
         src={`http://localhost:3001/assets/${image}`}
         alt="user image"
         width={size}

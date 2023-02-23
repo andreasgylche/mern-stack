@@ -1,18 +1,20 @@
 import { useSelector } from 'react-redux'
 import Navbar from '../navbar'
-import Posts from '../widgets/Posts'
+import PostsWidget from '../widgets/PostsWidget'
+import UserWidget from '../widgets/UserWidget'
 import Form from './Form'
 
 export default function HomePage() {
-  const { _id } = useSelector((state) => state.user)
-
   return (
     <div className="w-full">
       <Navbar />
-      <main className="flex flex-col items-center w-full h-screen">
-        <h1 className="block text-lg font-semibold my-4">Create a post</h1>
-        <Form />
-        <Posts userId={_id} />
+      <main className="w-full h-screen lg:grid lg:grid-cols-[288px_1fr] gap-6 px-4 mt-12">
+        <UserWidget />
+
+        <div className="flex flex-col items-center">
+          <Form />
+          <PostsWidget />
+        </div>
       </main>
     </div>
   )

@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import { setPost, setFollow } from '../../state'
 
-export default function Post({ post }) {
+export default function PostWidget({ post }) {
   const navigate = useNavigate()
   const dispatch = useDispatch()
   const token = useSelector((state) => state.token)
@@ -14,9 +14,9 @@ export default function Post({ post }) {
     : `https://ui-avatars.com/api/?name=${post.user.username}`
   const postImage = `http://localhost:3001/assets/${post.picturePath}`
   const likeCount = Object.keys(post.likes).length
-  const isLiked = Boolean(post.likes[user._id])
-  const isFollow = Boolean(user.following[post.user._id])
-  const isOwn = Boolean(post.user._id == user._id)
+  const isLiked = Boolean(post.likes[user?._id])
+  const isFollow = Boolean(user?.following[post.user._id])
+  const isOwn = Boolean(post.user._id == user?._id)
 
   const handleLike = async () => {
     const response = await fetch(

@@ -20,7 +20,7 @@ const initialPostValues = {
 
 export default function Form() {
   const dispatch = useDispatch()
-  const { _id } = useSelector((state) => state.user)
+  const user = useSelector((state) => state.user)
   const token = useSelector((state) => state.token)
 
   const handleFormSubmit = async (values, onSubmitProps) => {
@@ -28,7 +28,7 @@ export default function Form() {
     for (let value in values) {
       formData.append(value, values[value])
     }
-    formData.append('userId', _id)
+    formData.append('userId', user._id)
     formData.append('picturePath', values.picture.name)
 
     const response = await fetch('http://localhost:3001/posts', {
@@ -44,6 +44,8 @@ export default function Form() {
       dispatch(setPosts({ posts }))
     }
   }
+
+  if (!user) return null
 
   return (
     <Formik

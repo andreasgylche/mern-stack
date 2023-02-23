@@ -4,7 +4,7 @@ import { useParams } from 'react-router-dom'
 import UserImage from '../../components/UserImage'
 
 import Navbar from '../navbar'
-import Posts from '../widgets/Posts'
+import PostsWidget from '../widgets/PostsWidget'
 
 export default function ProfilePage() {
   const [user, setUser] = useState({})
@@ -32,7 +32,7 @@ export default function ProfilePage() {
   if (!user) return null
 
   return (
-    <div className="flex flex-col items-center w-full h-screen">
+    <div className="flex flex-col items-center w-full">
       <Navbar />
       <h1 className="block text-lg font-semibold my-4">Profile page</h1>
 
@@ -49,7 +49,7 @@ export default function ProfilePage() {
         <p>Total likes: {user.totalLikes}</p>
       </div>
 
-      <Posts userId={id} isProfile />
+      <PostsWidget isProfile />
     </div>
   )
 }

@@ -5,21 +5,23 @@ import { useNavigate } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 import { setLogin } from '../../state'
 import Dropzone from 'react-dropzone'
+import { useContext } from 'react'
+import { AuthModalContext } from '../../App'
 
 const registerSchema = yup.object().shape({
-  username: yup.string().required('Field is required.'),
-  email: yup.string().email('Invalid email').required('Field is required.'),
-  password: yup.string().required('Field is required.'),
-  picture: yup.string().required('Field is required.'),
+  username: yup.string().required('Username is required.'),
+  email: yup.string().email('Invalid email').required('Email is required.'),
+  password: yup.string().required('Password is required.'),
+  picture: yup.string().required('Picture is required.'),
 })
 
 const loginSchema = yup.object().shape({
-  email: yup.string().email('Invalid email').required('Field is required.'),
-  password: yup.string().required('Field is required.'),
+  email: yup.string().email('Invalid email').required('Email is required.'),
+  password: yup.string().required('Password is required.'),
 })
 
 const initialValuesRegister = {
-  username: '',
+  username: 'Test',
   email: '',
   password: '',
   picture: '',
@@ -36,6 +38,7 @@ export default function Form() {
   const navigate = useNavigate()
   const isLogin = pageType === 'login'
   const isRegister = pageType === 'register'
+  const [isAuthOpen, setIsAuthOpen] = useContext(AuthModalContext)
 
   const register = async (values, onSubmitProps) => {
     const formData = new FormData()
@@ -75,7 +78,8 @@ export default function Form() {
           token: loggedIn.token,
         })
       )
-      navigate('/home')
+      navigate('/')
+      setIsAuthOpen(false)
     }
   }
 
@@ -101,7 +105,7 @@ export default function Form() {
         resetForm,
       }) => (
         <form
-          className="flex flex-col justify-center items-center w-72"
+          className="flex flex-col justify-center items-center w-full mt-6"
           onSubmit={handleSubmit}
         >
           {isRegister && (
@@ -110,7 +114,7 @@ export default function Form() {
                 Username:
               </label>
               <input
-                className="rounded border border-indigo-200 mb-2 text-base px-4 py-2 mt-1 w-full"
+                className="rounded-lg bg-[#f0f0f0] dark:bg-neutral-700 border-2 border-teal-500/50 mb-2 text-base px-4 py-2 mt-2 w-full"
                 type="text"
                 name="username"
                 id="username"
@@ -119,15 +123,15 @@ export default function Form() {
                 value={values.username}
               />
               {touched.username && errors.username && (
-                <p className="text-sm text-rose-500 self-start">
+                <p className="text-xs text-rose-500 self-start">
                   {errors.username}
                 </p>
               )}
 
-              <label className="self-start" htmlFor="picture">
+              <label className="self-start mt-2" htmlFor="picture">
                 Profile picture:
               </label>
-              <div className="rounded border border-indigo-200 p-2 mt-1 mb-2 w-full">
+              <div className="rounded-lg border border-teal-500 p-2 my-2 w-full">
                 <Dropzone
                   acceptedFiles=".jpg,.jpeg,.png"
                   multiple={false}
@@ -137,7 +141,7 @@ export default function Form() {
                 >
                   {({ getRootProps, getInputProps }) => (
                     <div
-                      className=" rounded border border-dashed border-indigo-200 hover:cursor-pointer p-2 w-full"
+                      className="rounded-lg border border-dashed border-teal-500/50 hover:cursor-pointer p-2 w-full"
                       {...getRootProps()}
                     >
                       <input name="picture" {...getInputProps()} />
@@ -152,11 +156,11 @@ export default function Form() {
               </div>
             </>
           )}
-          <label className="self-start" htmlFor="email">
+          <label className="self-start mt-2" htmlFor="email">
             Email:
           </label>
           <input
-            className="rounded border border-indigo-200 mb-2 text-base px-4 py-2 mt-1 w-full"
+            className="rounded-lg bg-[#f0f0f0] dark:bg-neutral-700 border-2 border-teal-500/50 mb-2 text-base px-4 py-2 mt-2 w-full"
             type="email"
             name="email"
             id="email"
@@ -165,13 +169,13 @@ export default function Form() {
             value={values.email}
           />
           {touched.email && errors.email && (
-            <p className="text-sm text-rose-500 self-start">{errors.email}</p>
+            <p className="text-xs text-rose-500 self-start">{errors.email}</p>
           )}
-          <label className="self-start" htmlFor="password">
+          <label className="self-start mt-2" htmlFor="password">
             Password:
           </label>
           <input
-            className="rounded border border-indigo-200 mb-2 text-base px-4 py-2 mt-1 w-full"
+            className="rounded-lg bg-[#f0f0f0] dark:bg-neutral-700 border-2 border-teal-500/50 mb-2 text-base px-4 py-2 mt-2 w-full"
             type="password"
             name="password"
             id="password"
@@ -180,19 +184,19 @@ export default function Form() {
             value={values.password}
           />
           {touched.password && errors.password && (
-            <p className="text-sm text-rose-500 self-start">
+            <p className="text-xs text-rose-500 self-start">
               {errors.password}
             </p>
           )}
           <button
-            className="rounded bg-indigo-200 font-semibold py-2 px-4 mt-4 w-full"
+            className="rounded bg-teal-500 font-semibold py-2 px-4 mt-4 w-full"
             type="submit"
           >
-            {isLogin ? 'Login' : 'Register'}
+            {isLogin ? 'Sign in' : 'Sign up'}
           </button>
 
           <p
-            className="mt-2 hover:underline hover:cursor-pointer text-sm"
+            className="mt-4 hover:underline hover:cursor-pointer text-sm self-start"
             onClick={() => setPageType(isLogin ? 'register' : 'login')}
           >
             {isLogin

@@ -1,6 +1,7 @@
 lockfileVersion: 5.4
 
 specifiers:
+  '@headlessui/react': ^1.7.11
   '@reduxjs/toolkit': ^1.9.2
   '@types/react': ^18.0.27
   '@types/react-dom': ^18.0.10
@@ -12,6 +13,7 @@ specifiers:
   react: ^18.2.0
   react-dom: ^18.2.0
   react-dropzone: ^14.2.3
+  react-icons: ^4.7.1
   react-redux: ^8.0.5
   react-router-dom: ^6.8.0
   redux-persist: ^6.0.0
@@ -20,12 +22,14 @@ specifiers:
   yup: ^0.32.11
 
 dependencies:
+  '@headlessui/react': 1.7.11_biqbaboplfbrettd7655fr4n2y
   '@reduxjs/toolkit': 1.9.2_k4ae6lp43ej6mezo3ztvx6pykq
   dotenv: 16.0.3
   formik: 2.2.9_react@18.2.0
   react: 18.2.0
   react-dom: 18.2.0_react@18.2.0
   react-dropzone: 14.2.3_react@18.2.0
+  react-icons: 4.7.1_react@18.2.0
   react-redux: 8.0.5_fxtgt6bjwd6p4cwoordejim2zi
   react-router-dom: 6.8.0_biqbaboplfbrettd7655fr4n2y
   redux-persist: 6.0.0_react@18.2.0
@@ -474,6 +478,18 @@ packages:
     dev: true
     optional: true
 
+  /@headlessui/react/1.7.11_biqbaboplfbrettd7655fr4n2y:
+    resolution: {integrity: sha512-EaDbVgcyiylhtskZZf4Qb/JiiByY7cYbd0qgZ9xm2pm2X7hKojG0P4TaQYKgPOV3vojPhd/pZyQh3nmRkkcSyw==}
+    engines: {node: '>=10'}
+    peerDependencies:
+      react: ^16 || ^17 || ^18
+      react-dom: ^16 || ^17 || ^18
+    dependencies:
+      client-only: 0.0.1
+      react: 18.2.0
+      react-dom: 18.2.0_react@18.2.0
+    dev: false
+
   /@jridgewell/gen-mapping/0.1.1:
     resolution: {integrity: sha512-sQXCasFk+U8lWYEe66WxRDOE9PjVz4vSM51fTu3Hw+ClTpUSQb718772vH3pyS5pShp6lvQM7SxgIDXXXmOX7w==}
     engines: {node: '>=6.0.0'}
@@ -720,6 +736,10 @@ packages:
     optionalDependencies:
       fsevents: 2.3.2
     dev: true
+
+  /client-only/0.0.1:
+    resolution: {integrity: sha512-IV3Ou0jSMzZrd3pZ48nLkT9DA7Ag1pnPzaiQhpW7c3RbcqqzvzzVu+L8gfqMp/8IM2MQtSiqaCxrrcfu8I8rMA==}
+    dev: false
 
   /color-convert/1.9.3:
     resolution: {integrity: sha512-QfAUtd+vFdAtFQcC8CCyYt1fYWxSqAiK2cSD6zDB8N3cpsEBAvRxp9zOGg6G/SHHJYAT88/az/IuDGALsNVbGg==}
@@ -1210,6 +1230,14 @@ packages:
 
   /react-fast-compare/2.0.4:
     resolution: {integrity: sha512-suNP+J1VU1MWFKcyt7RtjiSWUjvidmQSlqu+eHslq+342xCbGTYmC0mEhPCOHxlW0CywylOC1u2DFAT+bv4dBw==}
+    dev: false
+
+  /react-icons/4.7.1_react@18.2.0:
+    resolution: {integrity: sha512-yHd3oKGMgm7zxo3EA7H2n7vxSoiGmHk5t6Ou4bXsfcgWyhfDKMpyKfhHR6Bjnn63c+YXBLBPUql9H4wPJM6sXw==}
+    peerDependencies:
+      react: '*'
+    dependencies:
+      react: 18.2.0
     dev: false
 
   /react-is/16.13.1:
